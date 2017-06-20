@@ -20,7 +20,11 @@ $Mes = addslashes(trim($_POST['mes']));
 $Ano = addslashes(trim($_POST['ano']));
 $Titulo = addslashes(trim($_POST['titulo']));
 $Categoria = addslashes(trim($_POST['categoria']));
-$Acao = 'Arquivo';
+if ($verTempo->Perfil == '1' OR $verTempo->Perfil == '2'){
+  $Acao = addslashes(trim($_POST['acao']));
+}else{
+  $Acao = 'Arquivo';
+}
 $DtAtualizacao = date('Y-m-d H:i:s');
 
 

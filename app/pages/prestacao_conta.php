@@ -91,7 +91,7 @@ function novo(id){
 
   }else{
 
-  $Atual=$pdo->prepare("SELECT * FROM prestacao_conta WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' ORDER BY Ano DESC");
+  $Atual=$pdo->prepare("SELECT * FROM prestacao_conta WHERE Pasta = 'prestacao' AND CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' ORDER BY Ano DESC");
   $Atual->execute();
   $vAtual=$Atual->fetch(PDO::FETCH_OBJ);
   $tAtual = $Atual->rowCount();
@@ -105,7 +105,7 @@ function novo(id){
 
 
 
-  $sql="SELECT * FROM prestacao_conta WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' AND Ano = '".$anoSeleciona."' ORDER BY Ano DESC";
+  $sql="SELECT * FROM prestacao_conta WHERE Pasta = 'prestacao' AND CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' AND Ano = '".$anoSeleciona."' ORDER BY Ano DESC";
   $Caixa=$pdo->prepare($sql);
   $Caixa->execute();
 
@@ -169,7 +169,7 @@ function novo(id){
 
 <div class="summary col-md-3 col-sm-3 col-md-pull-9 col-sm-pull-9">
   <?php
-  $Caixa=$pdo->prepare("SELECT * FROM prestacao_conta WHERE CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND Acao IN('Arquivo','Correcao','Cadastrando')");
+  $Caixa=$pdo->prepare("SELECT * FROM prestacao_conta WHERE Pasta = 'prestacao' AND CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND Acao IN('Arquivo','Correcao','Cadastrando')");
   $Caixa->execute();
 
   $lCaixa=$Caixa->fetchAll(PDO::FETCH_OBJ);
@@ -196,7 +196,7 @@ function novo(id){
 
       <div class="panel-group" id="accordion1">
                               <?php
-                              $Ano=$pdo->prepare("SELECT * FROM prestacao_conta WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' GROUP BY Ano ORDER BY Ano DESC");
+                              $Ano=$pdo->prepare("SELECT * FROM prestacao_conta WHERE Pasta = 'prestacao' AND CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' GROUP BY Ano ORDER BY Ano DESC");
                               $Ano->execute();
 
                               $lAno=$Ano->fetchAll(PDO::FETCH_OBJ);

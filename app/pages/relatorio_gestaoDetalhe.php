@@ -5,7 +5,7 @@ include ("../func/seg.php");
 
 $id = $_GET['id'];
 
-$Atual=$pdo->prepare("SELECT * FROM despesas WHERE id = '".$id."'");
+$Atual=$pdo->prepare("SELECT * FROM prestacao_conta WHERE id = '".$id."'");
 $Atual->execute();
 $rsLinha=$Atual->fetch(PDO::FETCH_OBJ);
 
@@ -16,7 +16,7 @@ $vPor=$Por->fetch(PDO::FETCH_OBJ);
 <div class="panel panel-default">
   <div class="panel-body  text-left">
       <h4 class="text-muted text-left col-md-9">
-          <?php echo $rsLinha->Categoria;?><br><br>
+          <?php echo $rsLinha->Nome;?><br><br>
 
       </h4>
 
@@ -27,15 +27,15 @@ $vPor=$Por->fetch(PDO::FETCH_OBJ);
 
             <tr>
                 <td>Titulo</td>
-                <td><?php echo $rsLinha->Titulo;?></td>
+                <td><?php echo $rsLinha->Nome;?></td>
             </tr>
             <tr>
-                <td>Mês / Ano</td>
-                <td><?php echo retorna_mes_extenso($rsLinha->Mes);?> / <?php echo $rsLinha->Ano;?></td>
+                <td>Ano</td>
+                <td><?php echo $rsLinha->Ano;?></td>
             </tr>
 
             <?php
-            $dir = '../dinamico/municipio/'.$vAdmin->Pasta.'/anexo/'.$rsLinha->Ano.'/'.$rsLinha->Arquivo;
+            $dir = '../dinamico/municipio/'.$vAdmin->Pasta.'/'.$rsLinha->Ano.'/rgf/'.$rsLinha->Arquivo;
              ?>
             <tr class="fundoTable">
                 <td colspan="2">

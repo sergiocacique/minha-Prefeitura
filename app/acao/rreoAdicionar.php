@@ -16,10 +16,32 @@ if (!isset($_SESSION['UsuarioID'])) {
     header("Location: login.php"); exit;
 }
 
-$Mes = addslashes(trim($_POST['mes']));
+
+$Bimestre = addslashes(trim($_POST['Bimestre']));
 $Ano = addslashes(trim($_POST['ano']));
-$Titulo = addslashes(trim($_POST['titulo']));
-$Categoria = addslashes(trim($_POST['categoria']));
+$Titulo = addslashes(trim($_POST['Titulo']));
+$DtAtualizacao = date('Y-m-d H:i:s');
+
+
+    if ($Bimestre == '1º BIMESTRE'){
+        $Pasta = '1_bim';
+        $Bim = "1";
+    }elseif ($Bimestre == '2º BIMESTRE 1º QUADRIMESTRE'){
+        $Pasta = '2_bim';
+        $Bim = "2";
+    }elseif ($Bimestre == '3º BIMESTRE'){
+        $Pasta = '3_bim';
+        $Bim = "3";
+    }elseif ($Bimestre == '4º BIMESTRE 2º QUADRIMESTRE'){
+        $Pasta = '4_bim';
+        $Bim = "4";
+    }elseif ($Bimestre == '5º BIMESTRE'){
+        $Pasta = '5_bim';
+        $Bim = "5";
+    }elseif ($Bimestre == '6º BIMESTRE 3º QUADRIMESTRE'){
+        $Pasta = '6_bim';
+        $Bim = "6";
+    }
 
 if ($verTempo->Perfil == '1' OR $verTempo->Perfil == '2'){
   $Acao = addslashes(trim($_POST['acao']));
@@ -29,8 +51,21 @@ if ($verTempo->Perfil == '1' OR $verTempo->Perfil == '2'){
 
 $DtAtualizacao = date('Y-m-d H:i:s');
 
+$DtCadastro1 = date('Y-m');
+$Protocolo = "U".$verTempo->CdUsuario."P".date('Y').date('m').date('d');
 
-$dir = '../../dinamico/municipio/'.$vAdmin->Pasta.'/anexo/'.$Ano.'/';
+$Atual=$pdo->prepare("SELECT * FROM rreo WHERE CdUsuario = '".$verTempo->CdUsuario."' AND DATE_FORMAT(DtCadastro, '%Y-%m') = '".$DtCadastro1."' ");
+$Atual->execute();
+$lAtual=$Atual->fetch(PDO::FETCH_OBJ);
+$tAtual = $Atual->rowCount();
+
+if ($tAtual == 0){
+    $Protocolo = $Protocolo;
+}else{
+    $Protocolo = $lAtual->Protocolo;
+}
+
+$dir = '../../dinamico/municipio/'.$vAdmin->Pasta.'/'.$Ano.'/rreo/';
 
 if (is_dir($dir)) {
 } else {
@@ -39,7 +74,7 @@ if (is_dir($dir)) {
 
 
 // Tamanho máximo do arquivo (em Bytes)
-$_UP['tamanho'] = 1024 * 1024 * 2; // 2Mb
+$_UP['tamanho'] = 10240 * 10240 * 10; // 2Mb
 
 // Array com as extensões permitidas
 $_UP['extensoes'] = array('pdf');
@@ -118,7 +153,7 @@ if ($_UP['tamanho'] < $_FILES['arquivo']['size']) {
 // Primeiro verifica se deve trocar o nome do arquivo
 if ($_UP['renomeia'] == true) {
     // Cria um nome baseado no UNIX TIMESTAMP atual e com extensão .jpg
-    $nome_final = md5(time()) . '.pdf';
+    $nome_final = md5(time()) . '.'.$extensao;
 } else {
     // Mantém o nome original do arquivo
     $nome_final = $_FILES['arquivo']['name'];
@@ -128,19 +163,21 @@ if ($_UP['renomeia'] == true) {
 if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir . $nome_final)) {
     // Upload efetuado com sucesso, exibe uma mensagem e um link para o arquivo
     echo "<div class='callout callout-success'>";
-    echo "<h4>Receita cadastrada com sucesso!</h4>";
+    echo "<h4>RREO cadastrada com sucesso!</h4>";
     echo "</div>";
 
-    $buscasegura=$pdo->prepare("INSERT INTO despesas(CdPrefeitura,CdUsuario,Titulo,Mes,Ano,Arquivo,Acao,DtCadastro,Categoria)VALUES(:CdPrefeitura,:CdUsuario,:Titulo,:Mes,:Ano,:Arquivo,:Acao,:DtCadastro,:Categoria)");
+    $buscasegura=$pdo->prepare("INSERT INTO rreo(CdPrefeitura,CdUsuario,Nome,Pasta,Bimestre,Bim,Ano,Arquivo,Acao,DtCadastro,Protocolo)VALUES(:CdPrefeitura,:CdUsuario,:Nome,:Pasta,:Bimestre,:Bim,:Ano,:Arquivo,:Acao,:DtCadastro,:Protocolo)");
     $buscasegura->bindValue(":CdPrefeitura",$vAdmin->CdPrefeitura);
     $buscasegura->bindValue(":CdUsuario",$verTempo->CdUsuario);
-    $buscasegura->bindValue(":Titulo",$Titulo);
-    $buscasegura->bindValue(":Mes",$Mes);
+    $buscasegura->bindValue(":Nome",$Titulo);
+    $buscasegura->bindValue(":Pasta",$Pasta);
+    $buscasegura->bindValue(":Bimestre",$Bimestre);
+    $buscasegura->bindValue(":Bim",$Bim);
     $buscasegura->bindValue(":Ano",$Ano);
+    $buscasegura->bindValue(":Protocolo",$Protocolo);
     $buscasegura->bindValue(":Arquivo",$nome_final);
     $buscasegura->bindValue(":Acao",$Acao);
     $buscasegura->bindValue(":DtCadastro",$DtAtualizacao);
-    $buscasegura->bindValue(":Categoria",$Categoria);
     $buscasegura->execute();
 
     //auditoria($_POST,$_SESSION['Usuario'].' Adicionou RREO/RGF : '.$Nome.'');
@@ -165,5 +202,5 @@ if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir . $nome_final)) {
 
 ?>
 <script language= "JavaScript">
-    location.href="../index.php?p=despesas"
+    location.href="../index.php?p=rreo"
 </script>

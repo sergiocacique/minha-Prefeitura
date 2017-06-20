@@ -20,7 +20,7 @@ function novo(id){
         <div class="modal-content modal-lg">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="modalLargeLabel">RELÁTORIO DE GESTÃO</h4>
+                <h4 class="modal-title" id="modalLargeLabel">RELATÓRIO DE GESTÃO</h4>
             </div>
             <div class="modal-body modal-lg col-md-12" id="conteudoModal">
 
@@ -43,7 +43,7 @@ function novo(id){
           <p><?php echo $vAdmin->Fantasia?></p>
         </li>
         <li>Transparência</li>
-        <li><a href="#" class="active">Relátorio de Gestão</a>
+        <li><a href="#" class="active">Relatório de Gestão</a>
         </li>
       </ul>
       <!-- END BREADCRUMB -->
@@ -63,7 +63,7 @@ function novo(id){
 
     <a class="btn btn-3d btn-reveal btn-red" href="javascript:void(0)" onclick="novo(0)">
         <i class="fa fa-plus-circle fa-1x pull-left"></i>
-        ADICIONAR Relátorio de Gestão
+        ADICIONAR Relatório de Gestão
     </a>
 
     <a class="btn btn-3d btn-reveal btn-green" href="index.php">
@@ -80,36 +80,32 @@ function novo(id){
 <div class="col-md-9 col-sm-9 col-md-push-3 col-sm-push-3">
   <?php
 
-  if(isset($_GET['m']) && isset($_GET['a'])){
-    $mesSeleciona = (int) $_GET['m'];
+  if(isset($_GET['a'])){
     $anoSeleciona = (int) $_GET['a'];
 
 
-  }elseif(isset($_POST['m']) && isset($_POST['a'])){
-    $mesSeleciona = (int) $_POST['m'];
+  }elseif(isset($_POST['a'])){
     $anoSeleciona = (int) $_POST['a'];
 
 
 
   }else{
 
-  $Atual=$pdo->prepare("SELECT * FROM despesas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' ORDER BY Ano DESC, Mes DESC");
+  $Atual=$pdo->prepare("SELECT * FROM prestacao_conta WHERE Pasta = 'rgf' AND CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' ORDER BY Ano DESC");
   $Atual->execute();
   $vAtual=$Atual->fetch(PDO::FETCH_OBJ);
+  $tAtual = $Atual->rowCount();
 
-  $mesSeleciona = $vAtual->Mes;
-  $anoSeleciona = $vAtual->Ano;
+  if($tAtual != 0) {
+    $anoSeleciona = $vAtual->Ano;
+  }else{
+    $anoSeleciona = date('Y');
+  }
 }
 
 
-$ContaMes = strlen($mesSeleciona);
-if($ContaMes == 2){
-  $mesSeleciona = $mesSeleciona;
-}else{
-  $mesSeleciona = "0".$mesSeleciona;
-}
 
-  $sql="SELECT * FROM despesas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' AND Mes = '".$mesSeleciona."' AND Ano = '".$anoSeleciona."' ORDER BY Mes DESC, Ano DESC";
+  $sql="SELECT * FROM prestacao_conta WHERE Pasta = 'rgf' AND CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' AND Ano = '".$anoSeleciona."' ORDER BY Ano DESC";
   $Caixa=$pdo->prepare($sql);
   $Caixa->execute();
 
@@ -134,7 +130,7 @@ if($ContaMes == 2){
     <?php }else{?>
   <div class="panel panel-default">
     <div class="grid-title no-border">
-        <h4>Relátorio de Gestão de <strong><?php echo retorna_mes_extenso($mesSeleciona);?> <?php echo $anoSeleciona;?></strong></h4>
+        <h4>Prestação de Contas de <strong> <?php echo $anoSeleciona;?></strong></h4>
     </div>
 
     <div class="panel-body">
@@ -145,7 +141,6 @@ if($ContaMes == 2){
           <table class="table table-full">
             <thead>
               <tr>
-                <th>Categoria</th>
                 <th>Nome</th>
 
                 <th></th>
@@ -154,8 +149,7 @@ if($ContaMes == 2){
             <tbody>
               <?php foreach ($lCaixa as $ler) {?>
               <tr>
-                <td><?php echo $ler->Categoria;?></td>
-                <td><?php echo $ler->Titulo;?></td>
+                <td><?php echo $ler->Nome;?></td>
 
                 <td class="text-right">
                   <a href="javascript:void(0)" onclick="vizualizar(<?php echo $ler->id; ?>)" type="button" class="btn btn-round btn-primary" data-title="Visualizar" ><i class="fa fa-plus"></i></a>
@@ -175,7 +169,7 @@ if($ContaMes == 2){
 
 <div class="summary col-md-3 col-sm-3 col-md-pull-9 col-sm-pull-9">
   <?php
-  $Caixa=$pdo->prepare("SELECT * FROM despesas WHERE CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND Acao IN('Arquivo','Correcao','Cadastrando')");
+  $Caixa=$pdo->prepare("SELECT * FROM prestacao_conta WHERE Pasta = 'rgf' AND CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND Acao IN('Arquivo','Correcao','Cadastrando')");
   $Caixa->execute();
 
   $lCaixa=$Caixa->fetchAll(PDO::FETCH_OBJ);
@@ -202,7 +196,7 @@ if($ContaMes == 2){
 
       <div class="panel-group" id="accordion1">
                               <?php
-                              $Ano=$pdo->prepare("SELECT * FROM despesas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' GROUP BY Ano ORDER BY Ano DESC");
+                              $Ano=$pdo->prepare("SELECT * FROM prestacao_conta WHERE Pasta = 'rgf' AND CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' GROUP BY Ano ORDER BY Ano DESC");
                               $Ano->execute();
 
                               $lAno=$Ano->fetchAll(PDO::FETCH_OBJ);
@@ -213,42 +207,12 @@ if($ContaMes == 2){
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion1" href="#collapse<?php echo $vAno->Ano;?>" class="collapsed">
+                                            <a href="?p=relatorio_gestao&a=<?php echo $vAno->Ano;?>">
                                                 <?php echo $vAno->Ano;?>
                                             </a>
                                         </h4><!-- /panel-title -->
                                     </div><!-- /panel-heading -->
-                                    <div id="collapse<?php echo $vAno->Ano;?>" class="panel-collapse collapse" style="height: 0px;">
-                                        <div class="panel-body">
-                                          <ul>
-                                            <?php
-                                            $Mes=$pdo->prepare("SELECT * FROM despesas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND Acao = 'Publicado' AND Ano = '".$vAno->Ano."' GROUP BY Mes ORDER BY Mes ASC");
-                                            $Mes->execute();
 
-                                            $lMes=$Mes->fetchAll(PDO::FETCH_OBJ);
-                                            $tMes = $Mes->rowCount();
-
-                                            foreach ($lMes as $vMes) {
-                                              $total = strlen($vMes->Mes);
-
-
-
-                                              if($total == 2){
-                                                $mesSel = $vMes->Mes;
-                                              }else{
-                                                $mesSel = "0".$vMes->Mes;
-                                              }
-                                                ?>
-                                                <li>
-                                                  <a href="?p=despesas&m=<?php echo $mesSel;?>&a=<?php echo $vMes->Ano;?>"><?php echo retorna_mes_extenso($vMes->Mes);?></a>
-                                                </li>
-                                                <?php
-                                            }
-                                            ?>
-                                          </ul>
-
-                                        </div><!-- /panel-body -->
-                                    </div><!-- /panel-collapse -->
                                 </div><!-- /panel -->
                                 <?php }?>
                             </div>

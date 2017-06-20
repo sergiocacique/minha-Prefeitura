@@ -57,7 +57,7 @@ include ("func/seg.php");
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar" data-pages="sidebar">
       <div id="appMenu" class="sidebar-overlay-slide from-top">
-        <?php if($verDados['CdPrefeitura'] == 0){?>
+        <?php if($verTempo->CdPrefeitura == 0){?>
           <?php
           $Prefeitura=$pdo->prepare("SELECT * FROM vw_prefeitura ORDER BY Fantasia ASC");
           $Prefeitura->execute();

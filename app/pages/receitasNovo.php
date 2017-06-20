@@ -73,6 +73,17 @@ include ("../func/seg.php");
 
               </div>
           </div>
+          <?php if ($verTempo->Perfil == '1' OR $verTempo->Perfil == '2'){?>
+          <div class=" col-sm-12 col-md-4">
+              <label>Ação</label>
+
+              <select class="form-control" id="acao" name="acao">
+                  <option value="Publicado">Publicar Agora</option>
+                  <option value="Arquivo">Guardar para Publicar depois</option>
+              </select>
+
+          </div>
+          <?php }?>
           <div class="col-sm-12 col-md-12">
               <hr>
           </div>
