@@ -1,0 +1,66 @@
+@import url(font-awesome.css);
+.barra{
+    background-color: #72bf44;
+    background-image: url("img/fundo.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    width: 100%;
+}
+.header {
+    position: relative;
+    display: block;
+    height: 60px;
+    width: 100%;
+    padding: 0 20px 0 0;
+    z-index: 800;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(230,230,230,0.7);
+}
+.panel {
+    background-color: #FFF !important;
+    border: 0px solid transparent !important;
+    border-radius: 0px !important;
+}
+.panel {
+  border: none;
+  border-bottom: 1px solid #d7d7d7 !important;
+  border-radius: 2px !important;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+.grid-title {
+    padding: 14px 15px 7px 15px;
+    border-bottom: 1px solid #eee;
+    color: #282323 !important;
+    background-color: #ffffff;
+    margin-bottom: 0px;
+    border: 1px solid #dddddd;
+    border-bottom: 0px;
+}
+.btn.btn-reveal {
+    padding-left: 40px;
+    padding-right: 28px;
+    overflow: hidden;
+    position: relative;
+    text-transform: uppercase;
+}
+.discovery .category .title, .discovery .category .cards, .discovery .category .card, .discovery .category .item {
+    display: inline-block;
+    float: left;
+    margin: 1px;
+    white-space: normal;
+}
+.discovery .category .title, .discovery .category .cards, .discovery .category .card, .discovery .category .item {
+    display: inline-block;
+    float: left;
+    margin: 1px;
+    white-space: normal;
+}
+.discovery .category {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    white-space: nowrap;
+}
