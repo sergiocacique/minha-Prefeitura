@@ -202,7 +202,7 @@ if($ContaMes == 2){
   <h4>Caixa de Tarefa</h4>
   </div>
   <div class="panel-body">
-  <p> você tem <strong><?php echo $tCaixa;?></strong> convênio(s) na sua caixa de tarefas <a href="p=minha_tarefa" class="alert-link">ir para caixa de tarefa</a>.</p>
+  <p> você tem <strong><?php echo $tCaixa;?></strong> convênio(s) na sua caixa de tarefas <a href="?p=minha_tarefa&t=convenios" class="alert-link">ir para caixa de tarefa</a>.</p>
 </div>
 </div>
 <?php }?>

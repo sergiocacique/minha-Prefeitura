@@ -3,7 +3,7 @@
 function vizualizar(id){
 
     //antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
-    $('#modalRecusar').modal('show');
+    $('#modalVer').modal('show');
     $("#conteudoModal").load('pages/ajuda_custoDetalhe.php?id=' + id);
 }
 
@@ -11,251 +11,11 @@ function novo(id){
 
     //antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
     $('#modalRecusar').modal('show');
-    $("#conteudoModal").load('pages/ajuda_custoNovo.php');
 }
 jQuery('#modalRecusar').on('shown.bs.modal', function () {
   $('[data-mask="money"]').mask('000.000.000.000.000,00', {reverse: true});
 })
 
-jQuery(function($){
-  // JQUERY MASK INPUT
-  console.log('aplicando mascara')
-  $('[data-mask="date"]').mask('00/00/0000');
-  $('[data-mask="time"]').mask('00:00:00');
-  $('[data-mask="date_time"]').mask('00/00/0000 00:00:00');
-  $('[data-mask="zip"]').mask('00000-000');
-  $('[data-mask="money"]').mask('000.000.000.000.000,00', {reverse: true});
-  $('[data-mask="phone"]').mask('0000-0000');
-  $('[data-mask="phone_with_ddd"]').mask('(00) 0000-0000');
-  $('[data-mask="phone_us"]').mask('(000) 000-0000');
-  $('[data-mask="cpf"]').mask('000.000.000-00', {reverse: true});
-  $('[data-mask="ip_address"]').mask('099.099.099.099');
-  $('[data-mask="percent"]').mask('##0,00%', {reverse: true});
-  // END JQUERY MASK INPUT
-});
-
-String.prototype.formatMoney = function() {
-    var v = this;
-
-    if(v.indexOf('.') === -1) {
-        v = v.replace(/([\d]+)/, "$1,00");
-    }
-
-    v = v.replace(/([\d]+)\.([\d]{1})$/, "$1,$20");
-    v = v.replace(/([\d]+)\.([\d]{2})$/, "$1,$2");
-
-    return v;
-};
-function id( el ){
-    return document.getElementById( el );
-}
-function getMoney( el ){
-    var money = id( el ).value.replace( ',', '.' );
-    return money ;
-}
-
-function soma()
-{
-//        console.log('Diarias antes = '+$('#valor_diaria2').val())
-    var Diarias = $('#valor_diaria2').val()
-
-    Diarias = Diarias.replace('.', '')
-    Diarias = Diarias.replace(',', '.')
-
-//        console.log('Diarias depois = '+Diarias)
-    var Dias = $('#dias2').val()
-
-    var total = Dias*Diarias;
-    id('valor_bruto2').value = String(total).formatMoney();
-    var valLiq = $('#valor_liquido2').val();
-    valLiq = $('#valor_bruto2').val();
-    id('valor_liquido2').value = String(valLiq)
-    //console.log('Valor Liquido = '+String(total).formatMoney());
-
-}
-
-
-function subtrai()
-{
-//        console.log('Diarias antes = '+$('#valor_diaria2').val())
-    var Liq = $('#valor_bruto2').val();
-    var inss = $('#inss2').val();
-    var irrf = $('#irrf2').val();
-
-    console.log('Antes = '+Liq)
-
-    Liq = Liq.replace('.', '')
-    Liq = Liq.replace(',', '.')
-
-    console.log('INSS Antes = '+inss)
-    console.log('IRRF Antes = '+irrf)
-    inss = inss.replace('.', '')
-    inss = inss.replace(',', '.')
-
-    irrf = irrf.replace('.', '')
-    irrf = irrf.replace(',', '.')
-
-    console.log('INSS Depois = '+inss)
-    console.log('IRRF Depois = '+irrf)
-
-    if(inss == ''){
-        inss = 0;
-    }
-
-    if(irrf == ''){
-        irrf = 0;
-    }
-
-    var total = parseFloat(inss)+parseFloat(irrf)
-    console.log('Total = '+total)
-    var total2 = Liq-total;
-    console.log('Total2 = '+total2)
-
-    console.log('Depois = '+Liq)
-
-//        id('valor_liquido2').value = total2.toFixed(2);
-    id('valor_liquido2').value = String(total2.toFixed(2)).formatMoney();
-}
-
-
-
-
-
-function soma1()
-{
-//        console.log('Diarias antes = '+$('#valor_diaria2').val())
-    var Diarias = $('#valor_diaria').val()
-
-    Diarias = Diarias.replace('.', '')
-    Diarias = Diarias.replace(',', '.')
-
-//        console.log('Diarias depois = '+Diarias)
-    var Dias = $('#dias').val()
-
-    var total = Dias*Diarias;
-    id('valor_bruto').value = String(total).formatMoney();
-    var valLiq = $('#valor_liquido').val();
-    valLiq = $('#valor_bruto').val();
-    id('valor_liquido').value = String(valLiq)
-//        console.log('Valor Liquido = '+valLiq);
-
-}
-
-
-function subtrai1()
-{
-//        console.log('Diarias antes = '+$('#valor_diaria2').val())
-    var Liq = $('#valor_bruto').val();
-    var inss = $('#inss').val();
-    var irrf = $('#irrf').val();
-
-    console.log('Antes = '+Liq)
-
-    Liq = Liq.replace('.', '')
-    Liq = Liq.replace(',', '.')
-
-    console.log('INSS Antes = '+inss)
-    console.log('IRRF Antes = '+irrf)
-    inss = inss.replace('.', '')
-    inss = inss.replace(',', '.')
-
-    irrf = irrf.replace('.', '')
-    irrf = irrf.replace(',', '.')
-
-    console.log('INSS Depois = '+inss)
-    console.log('IRRF Depois = '+irrf)
-
-    if(inss == ''){
-        inss = 0;
-    }
-
-    if(irrf == ''){
-        irrf = 0;
-    }
-
-    var total = parseFloat(inss)+parseFloat(irrf)
-    console.log('Total = '+total)
-    var total3 = Liq-total;
-    console.log('Total = '+total3)
-
-    console.log('Depois = '+Liq)
-
-//        id('valor_liquido2').value = total2.toFixed(2);
-    id('valor_liquido').value = String(total3.toFixed(2)).formatMoney();
-}
-
-function maskIt(w,e,m,r,a){
-// Cancela se o evento for Backspace
-    if (!e) var e = window.event;
-    if (e.keyCode) code = e.keyCode;
-    else if (e.which) code = e.which;
-// Variáveis da função
-    var txt  = (!r) ? w.value.replace(/[^\d]+/gi,'') : w.value.replace(/[^\d]+/gi,'').reverse();
-    var mask = (!r) ? m : m.reverse();
-    var pre  = (a ) ? a.pre : "";
-    var pos  = (a ) ? a.pos : "";
-    var ret  = "";
-    if(code == 9 || code == 8 || txt.length == mask.replace(/[^#]+/g,'').length) return false;
-// Loop na máscara para aplicar os caracteres
-    for(var x=0,y=0, z=mask.length;x<z && y<txt.length;){
-        if(mask.charAt(x)!='#'){
-            ret += mask.charAt(x); x++; }
-        else {
-            ret += txt.charAt(y); y++; x++; } }
-// Retorno da função
-    ret = (!r) ? ret : ret.reverse()
-    w.value = pre+ret+pos; }
-// Novo método para o objeto 'String'
-String.prototype.reverse = function(){
-    return this.split('').reverse().join(''); };
-function number_format( number, decimals, dec_point, thousands_sep ) {
-    var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
-    var d = dec_point == undefined ? "," : dec_point;
-    var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
-    var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
-    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-}
-
-
-
-//Validação
-$(document).ready( function() {
-    $("#formularioContato").validate({
-        // Define as regras
-        rules:{
-            Destino:{
-                // campoNome será obrigatório (required) e terá tamanho mínimo (minLength)
-                required: true, minlength: 2
-            },
-            campoEmail:{
-                // campoEmail será obrigatório (required) e precisará ser um e-mail válido (email)
-                required: true, email: true
-            },
-            campoMensagem:{
-                // campoMensagem será obrigatório (required) e terá tamanho mínimo (minLength)
-                required: true, minlength: 2
-            }
-        },
-        // Define as mensagens de erro para cada regra
-        messages:{
-            Destino:{
-                required: "Digite o destino",
-                minLength: "O seu nome deve conter, no mínimo, 2 caracteres"
-            },
-            campoEmail:{
-                required: "Digite o seu e-mail para contato",
-                email: "Digite um e-mail válido"
-            },
-            campoMensagem:{
-                required: "Digite a sua mensagem",
-                minLength: "A sua mensagem deve conter, no mínimo, 2 caracteres"
-            }
-        }
-    });
-});
-$(function(){
-    $('#modalCPF').modal('show');
-});
 </script>
 
 <div class="modal fade fill-in in" id="modalRecusar" tabindex="-1" role="dialog" aria-labelledby="modalLargeLabel" aria-hidden="true">
@@ -263,10 +23,26 @@ $(function(){
         <div class="modal-content modal-lg">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="modalLargeLabel">DIÁRIA</h4>
+                <h4 class="modal-title" id="modalLargeLabel">AJUDA DE CUSTO</h4>
             </div>
             <div class="modal-body modal-lg col-md-12" id="conteudoModal">
+              <?php include ("pages/ajuda_custoNovo.php");?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 
+<div class="modal fade fill-in in" id="modalVer" tabindex="-1" role="dialog" aria-labelledby="modalLargeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modalLargeLabel">AJUDA DE CUSTO</h4>
+            </div>
+            <div class="modal-body modal-lg col-md-12" id="conteudoModal">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
@@ -424,6 +200,25 @@ if($ContaMes == 2){
 </div>
 
 <div class="summary col-md-3 col-sm-3 col-md-pull-9 col-sm-pull-9">
+  <?php
+  $Caixa=$pdo->prepare("SELECT * FROM ajuda_custo WHERE CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND Acao IN('Arquivo','Correcao','Cadastrando')");
+  $Caixa->execute();
+
+  $lCaixa=$Caixa->fetchAll(PDO::FETCH_OBJ);
+  $tCaixa = $Caixa->rowCount();
+
+
+  if($tCaixa != 0 ){
+      ?>
+<div class="panel panel-default">
+  <div class="grid-title no-border">
+  <h4>Caixa de Tarefa</h4>
+  </div>
+  <div class="panel-body">
+  <p> você tem <strong><?php echo $tCaixa;?></strong> RREO(s) na sua caixa de tarefas <a href="?p=minha_tarefa&t=ajuda_custo" class="alert-link">ir para caixa de tarefa</a>.</p>
+</div>
+</div>
+<?php }?>
   <div class="panel panel-default">
     <div class="grid-title no-border">
     <h4>Filtros</h4>

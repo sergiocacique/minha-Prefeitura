@@ -6,12 +6,6 @@ function vizualizar(id){
     $('#modalRecusar').modal('show');
     $("#conteudoModal").load('pages/cplDetalhe.php?id=' + id);
 }
-function novo(id){
-
-    //antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
-    $('#modalRecusar').modal('show');
-    $("#conteudoModal").load('pages/cplNovo.php');
-}
 
 </script>
 
@@ -61,7 +55,7 @@ function novo(id){
         INICIO
     </a>
 
-    <a class="btn btn-3d btn-reveal btn-red" href="javascript:void(0)" onclick="novo(0)">
+    <a class="btn btn-3d btn-reveal btn-red" href="?p=cplNovo" onclick="novo(0)">
         <i class="fa fa-plus-circle fa-1x pull-left"></i>
         ADICIONAR Contratos e Licitações
     </a>
@@ -189,7 +183,7 @@ if($ContaMes == 2){
   <h4>Caixa de Tarefa</h4>
   </div>
   <div class="panel-body">
-  <p> você tem <strong><?php echo $tCaixa;?></strong> Contrato(s) e Licitação(ões) na sua caixa de tarefas <a href="p=minha_tarefa" class="alert-link">ir para caixa de tarefa</a>.</p>
+  <p> você tem <strong><?php echo $tCaixa;?></strong> Contrato(s) e Licitação(ões) na sua caixa de tarefas <a href="?p=minha_tarefa&t=cpl" class="alert-link">ir para caixa de tarefa</a>.</p>
 </div>
 </div>
 <?php }?>

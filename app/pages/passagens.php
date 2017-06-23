@@ -175,6 +175,25 @@ if($ContaMes == 2){
 </div>
 
 <div class="summary col-md-3 col-sm-3 col-md-pull-9 col-sm-pull-9">
+  <?php
+  $Caixa=$pdo->prepare("SELECT * FROM passagens WHERE CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND Acao IN('Arquivo','Correcao','Cadastrando')");
+  $Caixa->execute();
+
+  $lCaixa=$Caixa->fetchAll(PDO::FETCH_OBJ);
+  $tCaixa = $Caixa->rowCount();
+
+
+  if($tCaixa != 0 ){
+      ?>
+<div class="panel panel-default">
+  <div class="grid-title no-border">
+  <h4>Caixa de Tarefa</h4>
+  </div>
+  <div class="panel-body">
+  <p> você tem <strong><?php echo $tCaixa;?></strong> passagem(ns) na sua caixa de tarefas <a href="?p=minha_tarefa&t=passagens" class="alert-link">ir para caixa de tarefa</a>.</p>
+</div>
+</div>
+<?php }?>
   <div class="panel panel-default">
     <div class="grid-title no-border">
     <h4>Filtros</h4>

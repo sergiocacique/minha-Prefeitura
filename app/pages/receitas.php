@@ -79,7 +79,7 @@ function novo(id){
 
 <div class="col-md-9 col-sm-9 col-md-push-3 col-sm-push-3">
   <?php
-  
+
 
 
   if(isset($_GET['m']) && isset($_GET['a'])){
@@ -191,7 +191,7 @@ if($ContaMes == 2){
   <h4>Caixa de Tarefa</h4>
   </div>
   <div class="panel-body">
-  <p> você tem <strong><?php echo $tCaixa;?></strong> receita(s) na sua caixa de tarefas <a href="p=minha_tarefa" class="alert-link">ir para caixa de tarefa</a>.</p>
+  <p> você tem <strong><?php echo $tCaixa;?></strong> receita(s) na sua caixa de tarefas <a href="?p=minha_tarefa&t=receitas" class="alert-link">ir para caixa de tarefa</a>.</p>
 </div>
 </div>
 <?php }?>

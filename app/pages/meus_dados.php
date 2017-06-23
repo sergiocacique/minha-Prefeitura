@@ -24,18 +24,10 @@
                 <div class="table-responsive">
                     <div class="panel-body  text-left">
                         <h4 class="text-muted text-left col-md-9">
-                            <?php echo $rsPagina['Nome'];?>
+                            <?php echo $verTempo->Nome;?>
 
 
                         </h4>
-                        <?php
-                        if ($rsPagina['Acao'] == 'Ativado'){
-                            $color = "dirtygreen";
-                        }else{
-                            $color = "red";
-                        }
-                        ?>
-
 
                         <div class="col-md-12 ocultar">
 
@@ -52,18 +44,18 @@
                                 <tr>
                                     <td>Data de Nascimento</td>
                                     <td><?php
-                                        if ($rsPagina['DtNascimento'] != "") {
-                                            echo date('d/m/Y', strtotime($rsPagina['DtNascimento']));
+                                        if ($verTempo->DtNascimento != "") {
+                                            echo date('d/m/Y', strtotime($verTempo->DtNascimento));
                                         }
                                         ?></td>
                                 </tr>
                                 <tr>
                                     <td>Matricula</td>
-                                    <td><code><?php echo $rsPagina['Matricula'];?></td>
+                                    <td><code><?php echo $verTempo->Matricula;?></td>
                                 </tr>
                                 <tr>
                                     <td>CPF</td>
-                                    <td><?php echo $rsPagina['CPF'];?></td>
+                                    <td><?php echo $verTempo->CPF;?></td>
                                 </tr>
 
                                 </tbody>

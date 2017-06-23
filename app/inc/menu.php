@@ -8,12 +8,12 @@
       <span class="icon-thumbnail "><i class="fa fa-address-card"></i></span>
     </li>
     <?php if($vAdmin->Acao == "Publicado"){?>
-    <li class="">
+    <!-- <li class="">
       <a href="?p=minha_tarefa" class="detailed">
         <span class="title">Minhas tarefas</span>
       </a>
       <span class="icon-thumbnail "><i class="fa fa-inbox"></i></span>
-    </li>
+    </li> -->
     <!-- <li class="">
       <a href="?p=financa" class="detailed">
         <span class="title">Finanças</span>
@@ -28,12 +28,12 @@
       </a>
       <span class="icon-thumbnail ">GE</span>
     </li> -->
-    <li class="">
+    <!-- <li class="">
       <a href="?p=esic" class="detailed">
         <span class="title">e-SIC</span>
       </a>
       <span class="icon-thumbnail "><i class="fa fa-comments-o"></i></span>
-    </li>
+    </li> -->
 
     <li class="">
       <a href="javascript:;">
@@ -76,7 +76,7 @@
           <span class="icon-thumbnail">RR</span>
         </li>
         <li class="">
-          <a href="?p=relatorio_gestao">Relatório de Gestão</a>
+          <a href="?p=relatorio_gestao">RGF - Relatório de Gestão Fiscal</a>
           <span class="icon-thumbnail">RG</span>
         </li>
         <li class="">
@@ -109,7 +109,7 @@
         </li>
       </ul>
     </li>
-    <li class="">
+    <!-- <li class="">
       <a href="javascript:;">
         <span class="title">RH</span>
         <span class=" arrow"></span>
@@ -134,21 +134,21 @@
           <span class="icon-thumbnail">TC</span>
         </li>
       </ul>
-    </li>
-    <li class="">
+    </li> -->
+    <!-- <li class="">
       <a href="?p=diario_oficial" class="detailed">
         <span class="title">Diário Oficial</span>
       </a>
       <span class="icon-thumbnail "><i class="fa fa-book"></i></span>
-    </li>
-    <li class="">
+    </li> -->
+    <!-- <li class="">
       <a href="?p=publicacao_oficial" class="detailed">
         <span class="title">Publicações</span>
         <span class="details">Publicação Oficiais</span>
       </a>
       <span class="icon-thumbnail "><i class="fa fa-file-text-o"></i></span>
-    </li>
-    <li class="">
+    </li> -->
+    <!-- <li class="">
       <a href="javascript:;">
         <span class="title">Portal </span>
         <span class=" arrow"></span>
@@ -181,20 +181,26 @@
           <span class="icon-thumbnail">LK</span>
         </li>
       </ul>
-    </li>
-    <li class="">
+    </li> -->
+    <!-- <li class="">
       <a href="?p=configuracoes" class="detailed">
         <span class="title">Configuração</span>
       </a>
       <span class="icon-thumbnail "><i class="fa fa-cogs"></i></span>
-    </li>
-    <li class="">
+    </li> -->
+    <!-- <li class="">
       <a href="?p=usuarios" class="detailed">
         <span class="title">Usuário</span>
       </a>
       <span class="icon-thumbnail "><i class="fa fa-users"></i></span>
-    </li>
+    </li> -->
     <?php }?>
+    <li class="">
+      <a href="sair.php" class="detailed">
+        <span class="title">Sair</span>
+      </a>
+      <span class="icon-thumbnail "><i class="fa fa-close"></i></span>
+    </li>
   </ul>
   <div class="clearfix"></div>
 </div>

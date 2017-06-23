@@ -152,12 +152,14 @@ if($ContaMes == 2){
             <thead>
               <tr>
                 <th>Nome</th>
+                <th>Bimestre</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($lCaixa as $ler) {?>
               <tr>
+                <td><?php echo $ler->Nome;?></td>
                 <td><?php echo $ler->Bimestre;?></td>
                 <td class="text-right">
                   <a href="javascript:void(0)" onclick="vizualizar(<?php echo $ler->id; ?>)" type="button" class="btn btn-round btn-primary" data-title="Visualizar" ><i class="fa fa-plus"></i></a>
@@ -191,7 +193,7 @@ if($ContaMes == 2){
   <h4>Caixa de Tarefa</h4>
   </div>
   <div class="panel-body">
-  <p> você tem <strong><?php echo $tCaixa;?></strong> RREO(s) na sua caixa de tarefas <a href="p=minha_tarefa" class="alert-link">ir para caixa de tarefa</a>.</p>
+  <p> você tem <strong><?php echo $tCaixa;?></strong> RREO(s) na sua caixa de tarefas <a href="?p=minha_tarefa&t=rreo" class="alert-link">ir para caixa de tarefa</a>.</p>
 </div>
 </div>
 <?php }?>

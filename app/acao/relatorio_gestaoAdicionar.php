@@ -179,5 +179,5 @@ if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir . $nome_final)) {
 
 ?>
 <script language= "JavaScript">
-    location.href="../index.php?p=prestacao_conta"
+    location.href="../index.php?p=relatorio_gestao"
 </script>

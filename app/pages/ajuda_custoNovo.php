@@ -212,7 +212,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
   <div class="col-sm-12">
     <div class="panel panel-transparent">
       <div class="panel-body">
-        <form class="validate" action="acao/DiariaAdicionar.php" method="post" enctype="multipart/form-data">
+        <form class="validate" action="acao/ajuda_custoAdicionar.php" method="post" enctype="multipart/form-data">
         <p>Informação Básica</p>
           <div class="form-group-attached">
             <div class="row clearfix">

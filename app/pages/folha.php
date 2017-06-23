@@ -172,6 +172,7 @@ function novo(id){
 </div>
 
 <div class="summary col-md-3 col-sm-3 col-md-pull-9 col-sm-pull-9">
+
   <div class="panel panel-default">
     <div class="grid-title no-border">
     <h4>Filtros</h4>
@@ -181,7 +182,7 @@ function novo(id){
 
       <div class="panel-group" id="accordion1">
                               <?php
-                              $Ano=$pdo->prepare("SELECT * FROM diarias WHERE CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND  Acao = 'Publicado' GROUP BY ano ORDER BY ano DESC");
+                              $Ano=$pdo->prepare("SELECT * FROM servidor WHERE CdPrefeitura = '".$vAdmin->CdPrefeitura."' AND  Acao = 'Publicado' GROUP BY Ano ORDER BY Ano DESC");
                               $Ano->execute();
 
                               $lAno=$Ano->fetchAll(PDO::FETCH_OBJ);
@@ -192,8 +193,8 @@ function novo(id){
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a href="?p=folha&a=<?php echo $vAno->ano;?>">
-                                                <?php echo $vAno->ano;?>
+                                            <a href="?p=folha&a=<?php echo $vAno->Ano;?>">
+                                                <?php echo $vAno->Ano;?>
                                             </a>
                                         </h4><!-- /panel-title -->
                                     </div><!-- /panel-heading -->

@@ -87,7 +87,7 @@ if ($tAtual == 0){
     $query = $query . " :ano,";
     $query = $query . " :Acao,";
     $query = $query . " :DtCadastro,";
-    $query = $query . " DtAtualizacao,";
+    $query = $query . " :DtAtualizacao,";
     $query = $query . " :DtViagem,";
     $query = $query . " :DtVolta,";
     $query = $query . " :CdSecretaria";
@@ -120,5 +120,5 @@ if ($tAtual == 0){
     ?>
 
 <script language= "JavaScript">
-    location.href="../index.php?p=passagens"
+     location.href="../index.php?p=passagens"
 </script>

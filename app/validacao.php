@@ -16,7 +16,6 @@ $Verifica->execute();
 $verVerifica=$Verifica->fetch(PDO::FETCH_OBJ);
 $mostra = $Verifica->rowCount();
 
-
 if ($mostra > 0) {
 
     $_SESSION['UsuarioID'] = $verVerifica->CdUsuario;
@@ -32,7 +31,7 @@ if ($mostra > 0) {
     $AtualizarUsuario->bindValue(":CdUsuario",$CdUsuario);
     $AtualizarUsuario->execute();
 
-    if($verDados['CdPrefeitura'] == 0){
+    if($verVerifica->CdPrefeitura == 0){
         header('Location: prefeituras.php'); exit;
     }else{
         $_SESSION['CdPrefeitura'] = $verVerifica->CdPrefeitura;
