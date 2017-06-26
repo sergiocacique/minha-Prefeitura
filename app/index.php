@@ -57,9 +57,8 @@ include ("func/seg.php");
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar" data-pages="sidebar">
       <div id="appMenu" class="sidebar-overlay-slide from-top">
-        <?php if($verTempo->CdPrefeitura == 0){?>
           <?php
-          $Prefeitura=$pdo->prepare("SELECT * FROM vw_prefeitura ORDER BY Fantasia ASC");
+          $Prefeitura=$pdo->prepare("SELECT * FROM vw_minha_prefeitura WHERE CdUsuario = '".$verTempo->CdUsuario."' AND Acao = 'Ativo' ORDER BY Fantasia ASC");
           $Prefeitura->execute();
 
           $lPrefeitura=$Prefeitura->fetchAll(PDO::FETCH_OBJ);
@@ -67,7 +66,7 @@ include ("func/seg.php");
 
           foreach ($lPrefeitura as $vPrefeitura) {
 
-          if($vPrefeitura->Acao == "Publicado"){
+          if($vPrefeitura->Acao_0 == "Publicado"){
               $TipoAcao = "unlock";
               $AcaoCor = "success";
           }else{
@@ -75,18 +74,20 @@ include ("func/seg.php");
               $AcaoCor = "danger";
           }
           ?>
-          <div class="imagem <?php echo $TipoAcao;?>">
+          <div class="imagem1 <?php echo $TipoAcao;?>">
             <a href="prefeitura_logar.php?idPrefeitura=<?php echo $vPrefeitura->CdPrefeitura;?>" rel="tooltip" title="" data-original-title="<?php echo $vPrefeitura->RazaoSocial;?>"><img alt="<?php echo $vPrefeitura->RazaoSocial;?>" src="../dinamico/brasao/<?php echo $vPrefeitura->Brasao;?>"></a>
               </div>
         <?php
       }
-     }?>
+     ?>
       </div>
       <!-- BEGIN SIDEBAR HEADER -->
       <div class="sidebar-header">
         <img src="../dinamico/brasao/<?php echo $vAdmin->Brasao?>" alt="<?php echo $vAdmin->Fantasia?>" class="brand" data-src="../dinamico/brasao/<?php echo $vAdmin->Brasao?>" data-src-retina="../dinamico/brasao/<?php echo $vAdmin->Brasao?>" width="45">
         <div class="sidebar-header-controls">
-          <button data-pages-toggle="#appMenu" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" type="button"><i class="fa fa-angle-down fs-16"></i>
+          <button data-pages-toggle="#appMenu" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" type="button">
+            Trocar
+            <i class="fa fa-angle-down fs-16"></i>
           </button>
           <button data-toggle-pin="sidebar" class="btn btn-link visible-lg-inline" type="button"><i class="fa fs-12"></i>
           </button>
@@ -139,6 +140,9 @@ include ("func/seg.php");
             <!-- START PAGE CONTENT WRAPPER -->
       <div class="page-content-wrapper">
         <!-- START PAGE CONTENT -->
+        <div class="clearfix">
+          
+        </div>
         <div class="content">
           <?php
           // Verifica se a variável $_GET['pagina'] existe

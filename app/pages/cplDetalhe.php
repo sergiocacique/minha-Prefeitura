@@ -142,7 +142,7 @@ $vSituacao=$Situacao->fetch(PDO::FETCH_OBJ);
             <tr class="fundoTable">
                 <td colspan="2">
                   <?php
-                  $Empresa=$pdo->prepare("SELECT * FROM cpl_empresa WHERE CdCPL = '".$rsLinha->CdCPL."' AND (Acao = 'Publicado')");
+                  $Empresa=$gerenciador->prepare("SELECT * FROM cpl_empresa WHERE CdCPL = '".$rsLinha->CdCPL."' AND (Acao = 'Publicado')");
                   $Empresa->execute();
                   $lisEmpresa=$Empresa->fetchAll(PDO::FETCH_OBJ);
                   $tEmpresa = $Empresa->rowCount();

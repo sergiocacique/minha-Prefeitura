@@ -1,5 +1,7 @@
 <?php
 $pdo=conectar();
+$gerenciador=conectar();
+$pagto=conectar();
 session_start();
 
 $agora = date('Y-m-d H:i:s');
@@ -10,6 +12,9 @@ $Tempo=$pdo->prepare("SELECT * FROM admin WHERE CdUsuario = '".$_SESSION['Usuari
 $Tempo->execute();
 $verTempo=$Tempo->fetch(PDO::FETCH_OBJ);
 
+$Pemissao=$pdo->prepare("SELECT * FROM adm_permissao WHERE CdUsuario = '".$verTempo->CdUsuario."'");
+$Pemissao->execute();
+$vPemissao=$Pemissao->fetch(PDO::FETCH_OBJ);
 
 if(isset($_SESSION['CdPrefeitura']) != "") {
 

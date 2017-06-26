@@ -1,6 +1,7 @@
 <script src="../js/jquery.mask.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdn.ckeditor.com/4.7.0/basic/ckeditor.js"></script>
 <script>
 jQuery(function($){
   // JQUERY MASK INPUT
@@ -200,73 +201,59 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
     var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
     return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 }
+function mascaraData( campo, e )
+{
+	var kC = (document.all) ? event.keyCode : e.keyCode;
+	var data = campo.value;
+
+	if( kC!=8 && kC!=46 )
+	{
+		if( data.length==2 )
+		{
+			campo.value = data += '/';
+		}
+		else if( data.length==5 )
+		{
+			campo.value = data += '/';
+		}
+		else
+			campo.value = data;
+	}
+}
 
 </script>
 <!-- END JUMBOTRON -->
 <!-- START CONTAINER FLUID -->
 <nav class="secondary-sidebar padding-30">
-<a href="email_compose.html" class="btn btn-complete btn-block btn-compose m-b-30">Compose</a>
-<p class="menu-title">BROWSE</p>
-<ul class="main-menu">
-<li class="active">
-<a href="#">
-<span class="title"><i class="pg-inbox"></i> Inbox</span>
-<span class="badge pull-right">5</span>
-</a>
-</li>
-<li class="">
-<a href="#">
-<span class="title"><i class="pg-folder"></i> All mail</span>
-</a>
-<ul class="sub-menu no-padding">
-<li>
-<a href="#">
-<span class="title">Important</span>
-</a>
-</li>
-<li>
-<a href="#">
-<span class="title">Labeled</span>
-</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#">
-<span class="title"><i class="pg-sent"></i> Sent</span>
-</a>
-</li>
-<li>
-<a href="#">
-<span class="title"><i class="pg-spam"></i> Spam</span>
-<span class="badge pull-right">10</span>
-</a>
-</li>
-</ul>
-<p class="menu-title m-t-20 all-caps">Quick view</p>
-<ul class="sub-menu no-padding">
-<li>
-<a href="#">
-<span class="title">Documents</span>
-</a>
-</li>
-<li>
-<a href="#">
-<span class="title">Flagged</span>
-<span class="badge pull-right">5</span>
-</a>
-</li>
-<li>
-<a href="#">
-<span class="title">Images</span>
-</a>
-</li>
-</ul>
+<p class="menu-title">CONTRATO E LICITAÇÃO</p>
+  <ul class="sub-menu no-padding">
+    <li class="active">
+      <a href="#">
+        <span class="title">Informação Básica</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="title">Empresas</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="title">Recursos</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="title">Anexos</span>
+      </a>
+    </li>
+
+  </ul>
 </nav>
 <div class="container-fluid container-fixed-lg">
   <!-- BEGIN PlACE PAGE CONTENT HERE -->
 
-  
+
 
 <div class="col-md-9 col-sm-9 col-md-push-3 col-sm-push-3">
   <div class="container-fluid bg-white">
@@ -337,7 +324,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
                 <div class="col-sm-4">
                   <div class="form-group form-group-default required" aria-required="true">
                     <label>Data da Abertura</label>
-                    <input required="required" data-mask="date" id="dtAbertura" name="dtAbertura" class="form-control date" type="text" placeholder="00/00/0000" onkeyup="maskIt(this,event,'##/##/####',true)">
+                    <input class="form-control" name="dtAbertura" type="text" maxlength="10" placeholder="00/00/0000" onkeyup="mascaraData( this, event )">
                   </div>
                 </div>
                 <div class="col-sm-4">
@@ -349,7 +336,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
                 <div class="col-sm-4">
                   <div class="form-group form-group-default">
                     <label>Data da Publicação</label>
-                    <input class="form-control" name="DtPublicacao" type="text" placeholder="00/00/0000" onkeyup="maskIt(this,event,'##/##/####',true)">
+                    <input class="form-control" name="DtPublicacao" type="text" maxlength="10" placeholder="00/00/0000" onkeyup="mascaraData( this, event )">
                   </div>
                 </div>
 
@@ -365,7 +352,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
                 <div class="col-sm-4">
                   <div class="form-group form-group-default">
                     <label>Data de Homologação</label>
-                    <input class="form-control" name="DtHomologacao" type="text" placeholder="00/00/0000" onkeyup="maskIt(this,event,'##/##/####',true)">
+                    <input class="form-control" name="DtHomologacao" type="text" maxlength="10" placeholder="00/00/0000" onkeyup="mascaraData( this, event )">
                   </div>
                 </div>
                 <div class="col-sm-4">
@@ -380,7 +367,14 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
                 <div class="col-sm-12">
                   <div class="form-group form-group-default">
                     <label>Objeto do Contrato</label>
-                    <textarea class="form-control" name="objetivo" id="objetivo" placeholder="" aria-invalid="false"></textarea>
+                    <textarea class="form-control" name="objetivo" id="objetivo" placeholder="Digite aqui o objeto do contrato." aria-invalid="false"></textarea>
+                    <script>
+                        //CKEDITOR.replace( 'objetivo' );
+
+                      // Turn off automatic editor creation first.
+                      CKEDITOR.disableAutoInline = true;
+                      CKEDITOR.inline( 'objetivo' );
+                  </script>
                   </div>
                 </div>
               </div>
@@ -447,6 +441,7 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
 
 
               </div>
+              
 
             </div>
 

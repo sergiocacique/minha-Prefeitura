@@ -18,8 +18,7 @@ if (!isset($_SESSION['UsuarioID'])) {
 
 $Orgao = $_POST['orgao'];
 
-$Protocolo = $_POST['protocolo'];
-$CdUsuario = $_SESSION['UsuarioID'];
+$CdUsuario = $verTempo->CdUsuario;
 
 $NumeroProcesso = $_POST['numero_processo'];
 $valor_licitacao = moeda($_POST['valor_licitacao']);
@@ -35,7 +34,7 @@ $numeroDOM = $_POST['numeroDOM'];
 $Finalidade = $_POST['finalidade'];
 $Modalidade = $_POST['modalidade'];
 $Tipo = $_POST['tipo'];
-$Descricao = $_POST['descricao'];
+$Descricao = $_POST['objetivo'];
 $DtCadastro = date('Y-m-d H:i:s');
 $DtCadastro1 = date('Y-m-d');
 
@@ -141,10 +140,10 @@ if ($tAtual == 0){
     $vUltimo=$Ultimo->fetch(PDO::FETCH_OBJ);
 
     echo "<div class='callout callout-success'>";
-    echo "<h4>Ajuda de Custo cadastrada com sucesso!</h4>";
+    echo "<h4>Contrato & Licitação cadastrada com sucesso!</h4>";
     echo "</div>";
     ?>
 
 <script language= "JavaScript">
-     location.href="../index.php?p=cpl_empresa&id=<?php echo $vUltimo->cdCPL;?>"
+     location.href="../index.php?p=cplEditar&id=<?php echo $vUltimo->CdCPL;?>&t=empresa"
 </script>

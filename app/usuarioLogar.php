@@ -5,13 +5,9 @@ include ("../conexao.php");
 $pdo=conectar();
 session_start();
 
+$usuario = $_GET['id'];
 
-
-$usuario = addslashes(trim($_POST['txUsuario']));
-$senha = addslashes(trim($_POST['txSenha']));
-$senha = md5($_POST['txSenha']);
-
-$Verifica=$pdo->prepare("SELECT * FROM admin WHERE Email = '".$usuario."' AND Senha = '".$senha."' AND Acao = 'Publicado'");
+$Verifica=$pdo->prepare("SELECT * FROM admin WHERE CdUsuario = '".$usuario."'");
 $Verifica->execute();
 $verVerifica=$Verifica->fetch(PDO::FETCH_OBJ);
 $mostra = $Verifica->rowCount();
