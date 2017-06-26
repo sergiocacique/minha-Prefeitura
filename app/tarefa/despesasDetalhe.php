@@ -5,7 +5,7 @@ include ("../func/seg.php");
 
 $id = $_GET['id'];
 
-$Atual=$pdo->prepare("SELECT * FROM receitas WHERE id = '".$id."'");
+$Atual=$pdo->prepare("SELECT * FROM despesas WHERE id = '".$id."'");
 $Atual->execute();
 $rsLinha=$Atual->fetch(PDO::FETCH_OBJ);
 
@@ -64,8 +64,8 @@ $vPor=$Por->fetch(PDO::FETCH_OBJ);
   </div>
 </div>
 <?php if ($verTempo->Perfil == '1' OR $verTempo->Perfil == '2'){?>
-<a href="./acao/receitasStatus.php?id=<?php echo $rsLinha->id;?>&a=aprovar" class="btn btn-green">Aprovar</a>
+<a href="./acao/despesasStatus.php?id=<?php echo $rsLinha->id;?>&a=aprovar" class="btn btn-green">Aprovar</a>
 <?php }else{?>
-<a href="./acao/receitasStatus.php?id=<?php echo $rsLinha->id;?>&a=tramitar" class="btn btn-green">Enviar para o orgão fiscalizador</a>
+<a href="./acao/despesasStatus.php?id=<?php echo $rsLinha->id;?>&a=tramitar" class="btn btn-green">Enviar para o orgão fiscalizador</a>
 <?php }?>
-<a href="./acao/receitasStatus.php?id=<?php echo $rsLinha->id;?>&a=excluir" class="btn btn-red">Excluir</a>
+<a href="./acao/despesasStatus.php?id=<?php echo $rsLinha->id;?>&a=excluir" class="btn btn-red">Excluir</a>

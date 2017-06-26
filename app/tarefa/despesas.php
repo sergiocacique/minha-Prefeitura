@@ -4,13 +4,13 @@ function vizualizar(id){
 
     //antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
     $('#modalRecusar').modal('show');
-    $("#conteudoModal").load('tarefa/receitasDetalhe.php?id=' + id);
+    $("#conteudoModal").load('tarefa/despesasDetalhe.php?id=' + id);
 }
 function editar(id){
 
     //antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
     $('#modalRecusar').modal('show');
-    $("#conteudoModal").load('pages/receitasEditar.php?id=' + id);
+    $("#conteudoModal").load('pages/despesasEditar.php?id=' + id);
 }
 
 </script>
@@ -20,7 +20,7 @@ function editar(id){
         <div class="modal-content modal-lg">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="modalLargeLabel">RECEITAS</h4>
+                <h4 class="modal-title" id="modalLargeLabel">DESPESAS</h4>
             </div>
             <div class="modal-body modal-lg col-md-12" id="conteudoModal">
 
@@ -71,8 +71,8 @@ function editar(id){
 
 
     }else{
-
-    $Atual=$pdo->prepare("SELECT * FROM receitas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND $UsuarioLog1 ORDER BY Ano DESC, Mes DESC");
+      $sql = "SELECT * FROM despesas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND $UsuarioLog1 ORDER BY Ano DESC, Mes DESC";
+    $Atual=$pdo->prepare($sql);
     $Atual->execute();
     $vAtual=$Atual->fetch(PDO::FETCH_OBJ);
 
@@ -88,7 +88,7 @@ function editar(id){
     $mesSeleciona = "0".$mesSeleciona;
     }
 
-    $sql="SELECT * FROM receitas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND $UsuarioLog1 ORDER BY Mes DESC, Ano DESC";
+    $sql="SELECT * FROM despesas WHERE CdPrefeitura = '". $vAdmin->CdPrefeitura ."' AND $UsuarioLog1 ORDER BY Mes DESC, Ano DESC";
     $Caixa=$pdo->prepare($sql);
     $Caixa->execute();
 
@@ -113,7 +113,7 @@ function editar(id){
       <?php }else{?>
     <div class="panel panel-default">
       <div class="grid-title no-border">
-          <h4>Receitas</h4>
+          <h4>Despesas</strong></h4>
       </div>
 
       <div class="panel-body">
