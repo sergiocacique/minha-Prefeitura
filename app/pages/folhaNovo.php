@@ -21,7 +21,7 @@ include ("../func/seg.php");
                       <input type="text" class="form-control" placeholder="nenhum arquivo selecionado" readonly="" />
                       <span class="button">Procurar Arquivo</span>
                   </div>
-                  <small class="text-muted block">Tamanho máximo: 20Mb (.csv<br>Recomendamos importar no máximo 2000 registros por vez)</small>
+                  <small class="text-muted block">Tamanho máximo: 20Mb (somente aquivos .csv ou .xml)</small>
 
               </div>
           </div>

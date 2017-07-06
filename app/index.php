@@ -52,8 +52,48 @@ include ("func/seg.php");
         document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="css/windows.chrome.fix.css" />'
     }
     </script>
+    <script language="javascript">
+
+    var YY = <?php echo date('Y');?>;
+    var MM = <?php echo date('m');?>;
+    var DD = <?php echo date('d');?>;
+    var HH = 17;
+    var MI = 59;
+    var SS = 00;
+
+    function atualizaContador() {
+    var hoje = new Date(<?php echo date('Y');?>,<?php echo date('m');?>,<?php echo date('d');?>,<?php echo date('H');?>,<?php echo date('i');?>,<?php echo date('s');?>);
+
+      var futuro = new Date(YY,MM,DD,HH,MI,SS);
+
+      var ss = parseInt((futuro - hoje) / 1000);
+      var mm = parseInt(ss / 60);
+      var hh = parseInt(mm / 60);
+      var dd = parseInt(hh / 24);
+
+      ss = ss - (mm * 60);
+      mm = mm - (hh * 60);
+      hh = hh - (dd * 24);
+
+      var faltam = '';
+      faltam += (dd && dd > 1) ? dd+' dias, ':(dd==1 ? '1 dia, ' : '');
+      faltam += (toString(hh).length) ? hh+'h ':'';
+      faltam += (toString(mm).length) ? mm+'m ':'';
+      faltam += '';
+
+      if (dd+hh+mm+ss > 0) {
+        document.getElementById('contador').innerHTML = 'Restam <strong>' + faltam + '</strong> horas para encerrar a publicação';
+        setTimeout(atualizaContador,1000);
+      } else {
+        document.getElementById('contador').innerHTML = 'publicação ENCERRADA!!!!';
+    	document.getElementById('contador22').innerHTML = 'publicação ENCERRADA!!!!';
+        setTimeout(atualizaContador,1000);
+      }
+    }
+
+    </script>
   </head>
-  <body class="fixed-header ">
+  <body class="fixed-header " onLoad="atualizaContador()">
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar" data-pages="sidebar">
       <div id="appMenu" class="sidebar-overlay-slide from-top">
@@ -141,7 +181,7 @@ include ("func/seg.php");
       <div class="page-content-wrapper">
         <!-- START PAGE CONTENT -->
         <div class="clearfix">
-          
+
         </div>
         <div class="content">
           <?php
@@ -640,9 +680,6 @@ include ("func/seg.php");
     <script src="js/modernizr.custom.js" type="text/javascript"></script>
     <script src="js/jquery-ui.min.js" type="text/javascript"></script>
 
-    <script src="js/jquery/jquery-easy.js" type="text/javascript"></script>
-     <script src="js/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-     <script src="js/jquery-bez/jquery.bez.min.js"></script>
     <script src="js/jquery.ioslist.min.js" type="text/javascript"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/jquery.actual.min.js"></script>

@@ -143,7 +143,7 @@ if($ContaMes == 2){
     <?php }else{?>
   <div class="panel panel-default">
     <div class="grid-title no-border">
-        <h4>Receitas de <strong><?php echo retorna_mes_extenso($mesSeleciona);?> <?php echo $anoSeleciona;?></strong></h4>
+        <h4>Convênios de <strong><?php echo retorna_mes_extenso($mesSeleciona);?> <?php echo $anoSeleciona;?></strong></h4>
     </div>
 
     <div class="panel-body">

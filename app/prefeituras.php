@@ -66,7 +66,7 @@ include ("func/seg.php");
           $lPrefeitura=$Prefeitura->fetchAll(PDO::FETCH_OBJ);
           $tPrefeitura = $Prefeitura->rowCount();
 
-          
+
           foreach ($lPrefeitura as $vPrefeitura) {
 
           if($vPrefeitura->Acao_0 == "Publicado"){
@@ -213,8 +213,8 @@ include ("func/seg.php");
                         ?>
                                 <div class="col-md-3 text-center">
 
-                                  <div class="panel panel-default">
-                                      <div class="panel-body text-center">
+
+
                                           <div>
                                             <img class="imagem <?php echo $TipoAcao;?>" alt="" src="../dinamico/brasao/<?php echo $vPrefeitura->Brasao;?>">
                                           </div>
@@ -237,13 +237,16 @@ include ("func/seg.php");
                                           <?php }else{?>
                                             <a href="prefeitura_logar.php?idPrefeitura=<?php echo ($vPrefeitura->CdPrefeitura);?>" class="btn btn-<?php echo $AcaoCor;?> font-branco">Acessar</a>
                                           <?php }?>
-                                      </div>
-                                  </div>
+
 
 
                                 </div>
                         <?php } ?>
-                        <br clear="all">
+                        <br><br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                     <?php }?>
                 </div>

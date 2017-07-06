@@ -48,7 +48,15 @@
                       }?>
                       <img class="imagem" alt="" src="<?php echo $img;?>">
                     </div>
-                    <h4> <?php echo $vUsuarios->Nome;?><br /><span>último acesso: <?php echo date('d/m/Y H:i:s', strtotime($vUsuarios->Horario));?></span></h4><br>
+                    <h4> <?php echo $vUsuarios->Nome;?><br /><span>último acesso:
+                      <?php
+                      if($vUsuarios->Horario != ""){
+                        echo date('d/m/Y H:i:s', strtotime($vUsuarios->Horario));
+                      }else{
+                        echo "Nunca Entrou";
+                      }
+                      ?>
+                    </span></h4><br>
 
 
 

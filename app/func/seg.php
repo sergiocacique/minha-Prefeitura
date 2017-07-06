@@ -2,7 +2,15 @@
 $pdo=conectar();
 $gerenciador=conectar();
 $pagto=conectar();
+$diario=conectar();
 session_start();
+
+if($_SESSION['UsuarioID']  == ""){
+    ob_start();
+    ob_end_clean();
+    session_destroy();
+    header("Location: login.php"); exit;
+}
 
 $agora = date('Y-m-d H:i:s');
 session_cache_expire(10);
@@ -33,10 +41,5 @@ if(isset($_SESSION['CdPrefeitura']) != "") {
 //}
 
 
-if($_SESSION['MP']  != $tokenUser){
-    ob_start();
-    ob_end_clean();
-    session_destroy();
-    header("Location: login.php"); exit;
-}
+
 ?>
